@@ -1,4 +1,4 @@
-from invoke import task
+from invoke import task, Exit
 import gerber
 from textwrap import dedent
 
@@ -35,7 +35,7 @@ def get_drills_of_dia(drill_file_path, diameter, normalize=True):
             tool = drills.tools[t]
 
     if not tool:
-        raise Exception('Standoff tool not found!')
+        raise Exit('Standoff tool not found!')
 
     hits = [hit for hit in drills.hits if hit.tool is tool]
     for hit in hits:
@@ -59,16 +59,16 @@ def verify(c):
     board_standoff_holes = get_drills_of_dia(BOARD_DRILLS, 5)
 
     if len(board_standoff_holes) != 5:
-        raise Exception(f'Found {len(board_standoff_holes)} holes in board, expected 5')
+        raise Exit(f'Found {len(board_standoff_holes)} holes in board, expected 5')
 
     plate_standoff_holes = get_drills_of_dia(PLATE_DRILLS, 2.35)
 
     if len(plate_standoff_holes) != 5:
-        raise Exception(f'Found {len(board_standoff_holes)} holes in cover, expected 5')
+        raise Exit(f'Found {len(board_standoff_holes)} holes in cover, expected 5')
 
     if sorted(board_standoff_holes) != sorted(plate_standoff_holes):
-        raise Exception(dedent(f"""\
-            Holes does not match:
+        raise Exit(dedent(f"""\
+            Holes did not match:
             board = {sorted(board_standoff_holes)}
             plate = {sorted(plate_standoff_holes)}
         """))

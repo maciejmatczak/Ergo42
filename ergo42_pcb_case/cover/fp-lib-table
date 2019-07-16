@@ -1,4 +1,0 @@
-
-(fp_lib_table
-  (lib (name "cover")(type KiCad)(uri "$(KIPRJMOD)/cover.pretty")(options "")(descr ""))
-)
