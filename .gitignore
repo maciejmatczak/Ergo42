@@ -1,5 +1,7 @@
 .vscode/*
 
+*.FCStd1
+
 *.000
 *.bak
 *.bck
