@@ -27,7 +27,7 @@ def plot(c):
     for project in PROJECTS:
         c.run(f'python scripts/plot.py {project}/{project}.kicad_pcb {project}/{PLOTS}')
 
-        c.run(f'{ZIPPER} {project}/{PLOTS}/{project}.zip {project}/{PLOTS}/*')
+        c.run(f'{ZIPPER} {project}/{PLOTS}/{project}.zip ./{project}/{PLOTS}/*')
 
 
 def get_drills_of_dia(drill_file_path, diameter, normalize=True):
