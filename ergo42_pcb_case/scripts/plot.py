@@ -78,3 +78,9 @@ drill_writer.CreateDrillandMapFilesSet(
     aGenDrill=True,
     aGenMap=False
 )
+
+pctl.OpenPlotfile("Overview", pcbnew.PLOT_FORMAT_PDF, "overview")
+for layer_info in layers:
+    pctl.SetLayer(layer_info[1])
+    pctl.PlotLayer()
+pctl.ClosePlot()
